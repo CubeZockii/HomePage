@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zyron HomePage</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e1e2e, #3a3d56);
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .search-box {
+            width: 40%;
+            padding: 15px;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+            font-size: 18px;
+            text-align: center;
+            background-color: #44475a;
+            color: white;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+        .search-box:focus {
+            background-color: #6272a4;
+            width: 55%;
+        }
+    </style>
+    <script>
+        function isValidURL(url) {
+            let pattern = /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,4}\/?.*$/;
+            return pattern.test(url);
+        }
+        
+        function searchGoogle(event) {
+            if (event.key === 'Enter') {
+                let query = document.getElementById('search-box').value;
+                if (query) {
+                    if (isValidURL(query)) {
+                        window.location.href = query.startswith('http') ? query : 'http://' + query;
+                    } else {
+                        window.location.href = `https://google.com/search?q=${encodeURIComponent(query)}`;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to Zyron</h1>
+    <div class="search-container">
+        <input type="text" id="search-box" class="search-box" placeholder="Search or enter a URL..." onkeypress="searchGoogle(event)">
+    </div>
+</body>
+</html>
