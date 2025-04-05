@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zyron HomePage</title>
+    <title>Zyron Homepage</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -44,7 +44,7 @@
         }
         .search-box:focus {
             background-color: #6272a4;
-            width: 55%;
+            width: 50%;
         }
     </style>
     <script>
@@ -52,15 +52,15 @@
             let pattern = /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,4}\/?.*$/;
             return pattern.test(url);
         }
-        
-        function searchGoogle(event) {
+
+        function searchDuckDuckGo(event) {
             if (event.key === 'Enter') {
                 let query = document.getElementById('search-box').value;
                 if (query) {
                     if (isValidURL(query)) {
                         window.location.href = query.startsWith('http') ? query : 'http://' + query;
                     } else {
-                        window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                        window.location.href = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
                     }
                 }
             }
@@ -70,7 +70,7 @@
 <body>
     <h1>Welcome to Zyron</h1>
     <div class="search-container">
-        <input type="text" id="search-box" class="search-box" placeholder="Search or enter a URL..." onkeypress="searchGoogle(event)">
+        <input type="text" id="search-box" class="search-box" placeholder="Search or enter a URL..." onkeypress="searchDuckDuckGo(event)">
     </div>
 </body>
 </html>
